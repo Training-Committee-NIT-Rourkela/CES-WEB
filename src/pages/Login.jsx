@@ -1,52 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { auth, signInWithEmailLink, isSignInWithEmailLink, sendSignInLinkToEmail } from "../firebase";
+import { auth, signInWithEmailLink, isSignInWithEmailLink, sendSignInLinkToEmail } from "../lib/firebase/firebase";
 import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
-import { theme } from "../styles/theme";
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  background-color: ${theme.background};
-  color: ${theme.text};
-`;
-
-const Card = styled.div`
-  background: ${theme.cardBackground};
-  padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  width: 350px;
-`;
-
-const Input = styled.input`
-  width: 100%;
-  padding: 12px;
-  margin: 8px 0;
-  background: ${theme.inputBackground};
-  border: 1px solid ${theme.borderColor};
-  color: ${theme.text};
-  border-radius: 5px;
-`;
-
-const Button = styled.button`
-  width: 100%;
-  padding: 12px;
-  margin-top: 12px;
-  background: ${theme.primary};
-  border: none;
-  color: #fff;
-  font-weight: bold;
-  cursor: pointer;
-  border-radius: 5px;
-
-  &:hover {
-    background: ${theme.secondary};
-  }
-`;
+import { ThemedButton, ThemedCard, ThemedContainer, ThemedInput } from "../styles";
 
 const Login = ({ setUser }) => {
     const [rollNumber, setRollNumber] = useState("");
@@ -92,13 +47,13 @@ const Login = ({ setUser }) => {
     };
 
     return (
-        <Container>
-            <Card>
+        <ThemedContainer>
+            <ThemedCard>
                 <h2>Login</h2>
-                <Input type="text" placeholder="Roll Number" value={rollNumber} onChange={(e) => setRollNumber(e.target.value)} />
-                <Button onClick={handleLogin}>Send Login Link</Button>
-            </Card>
-        </Container>
+                <ThemedInput type="text" placeholder="Roll Number" value={rollNumber} onChange={(e) => setRollNumber(e.target.value)} />
+                <ThemedButton onClick={handleLogin}>Send Login Link</ThemedButton>
+            </ThemedCard>
+        </ThemedContainer>
     );
 };
 
