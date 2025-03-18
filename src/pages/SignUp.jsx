@@ -3,6 +3,7 @@ import { auth, sendSignInLinkToEmail } from "../firebase";
 import styled from "styled-components";
 import { theme } from "../styles/theme";
 
+
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -48,45 +49,45 @@ const Button = styled.button`
 `;
 
 const SignUp = () => {
-    const [rollNumber, setRollNumber] = useState("");
-    const [name, setName] = useState("");
-    const [loading, setLoading] = useState(false);
-    //const navigate = useNavigate();
+  const [rollNumber, setRollNumber] = useState("");
+  const [name, setName] = useState("");
+  const [loading, setLoading] = useState(false);
+  //const navigate = useNavigate();
 
-    const handleSignUp = async () => {
-        if (!rollNumber || !name) {
-            alert("Please enter your Roll Number and Name");
-            return;
-        }
+  const handleSignUp = async () => {
+    if (!rollNumber || !name) {
+      alert("Please enter your Roll Number and Name");
+      return;
+    }
 
-        const email = `${rollNumber}@nitrkl.ac.in`;
-        const actionCodeSettings = {
-            url: "http://localhost:5173/login",
-            handleCodeInApp: true,
-        };
-
-        setLoading(true);
-        try {
-            await sendSignInLinkToEmail(auth, email, actionCodeSettings);
-            window.localStorage.setItem("emailForSignIn", email);
-            alert(`Verification link sent to ${email}. Check your email.`);
-        } catch (error) {
-            console.error("Error sending email:", error);
-            alert("Failed to send verification link.");
-        }
-        setLoading(false);
+    const email = `${rollNumber}@nitrkl.ac.in`;
+    const actionCodeSettings = {
+      url: "http://localhost:5173/login",
+      handleCodeInApp: true,
     };
 
-    return (
-        <Container>
-            <Card>
-                <h2>Sign Up</h2>
-                <Input type="text" placeholder="Roll Number" value={rollNumber} onChange={(e) => setRollNumber(e.target.value)} />
-                <Input type="text" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} />
-                <Button onClick={handleSignUp} disabled={loading}>{loading ? "Sending..." : "Sign Up"}</Button>
-            </Card>
-        </Container>
-    );
+    setLoading(true);
+    try {
+      await sendSignInLinkToEmail(auth, email, actionCodeSettings);
+      window.localStorage.setItem("emailForSignIn", email);
+      alert(`Verification link sent to ${email}. Check your email.`);
+    } catch (error) {
+      console.error("Error sending email:", error);
+      alert("Failed to send verification link.");
+    }
+    setLoading(false);
+  };
+
+  return (
+    <Container>
+      <Card>
+        <h2>Sign Up</h2>
+        <Input type="text" placeholder="Roll Number" value={rollNumber} onChange={(e) => setRollNumber(e.target.value)} />
+        <Input type="text" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} />
+        <Button onClick={handleSignUp} disabled={loading}>{loading ? "Sending..." : "Sign Up"}</Button>
+      </Card>
+    </Container>
+  );
 };
 
 export default SignUp;
