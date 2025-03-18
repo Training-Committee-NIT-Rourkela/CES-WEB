@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { auth, sendSignInLinkToEmail } from "../firebase";
+import { auth, sendSignInLinkToEmail } from "../lib/firebase/firebase";
 import { ThemedButton, ThemedCard, ThemedContainer, ThemedInput } from "../styles";
 
 const SignUp = () => {

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { auth, signInWithEmailLink, isSignInWithEmailLink, sendSignInLinkToEmail } from "../firebase";
+import { auth, signInWithEmailLink, isSignInWithEmailLink, sendSignInLinkToEmail } from "../lib/firebase/firebase";
 import { useNavigate } from "react-router-dom";
 import { ThemedButton, ThemedCard, ThemedContainer, ThemedInput } from "../styles";
 
